@@ -1,36 +1,50 @@
-let montoTotal = getMontoTotal();
-let cuotas = getCuotas();
-let montoCuota = getCuota();
+let IdCounter = 0;
+const input = document.querySelector('input[type="text"]');
 
+userInput.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    if(input.value.trim().length != 0){
+        addTask();
+    }
+});
 
+let addTask = ()=>{
+    IdCounter++;
 
-function getMontoTotal() {
-    let montoTotal = parseInt(prompt("Ingrese el monto del prestamo"));
-    console.log(montoTotal);
-    if (isNaN(montoTotal))
-        while (isNaN(montoTotal)) {
-            alert("Ha Ingresado un numero invalido, ingrese un numero.")
-            montoTotal = parseInt(prompt("Por favor ingrese un numero valido mayor a 0"));
-        }
-    return montoTotal;
+    //Recoger Texto
+    let newValue = input.value;
+
+    //Agregar tarea
+    const newTask = `
+        <div class="task-container" id="${IdCounter}">
+            <label>
+                <input type="checkbox"> 
+                ${newValue}
+            </label>
+            <img src="./images/delete.png" class="closeBtn">
+        </div>
+    `;
+    list.innerHTML += newTask;
+    input.value = '';
+    updateStats();
 }
 
+list.addEventListener('click', (event)=>{
+    if(event.srcElement.nodeName == 'INPUT'){
+        updateStats();
+    }else if(event.srcElement.nodeName == 'IMG'){
+        deleteTask(event.srcElement.parentNode.id);
+    }
+});
 
-function getCuotas() {
-    let cuotas = parseInt(prompt("Ingrese las cuotas que desea"));
-    console.log(cuotas);
-    if (isNaN(cuotas))
-        while (isNaN(cuotas)) {
-            alert("Ha Ingresado un caracter invalido, ingrese un numero.")
-            cuotas = parseInt(prompt("Por favor ingrese un numero valido mayor a 0"));
-        }
-    return cuotas;
-}
+let updateStats = ()=>{
+    let element = list.querySelectorAll('div');
+    let checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
+    stats.innerHTML = `Tareas pendientes: ${element.length} Completadas: ${checkbox.length}`;
+};
 
-function getCuota() {
-    var montoCuota = montoTotal / cuotas;
-    // var montoCuota = parseInt(prompt("El monto mensual por cuota sera:" + montoCuota + "pesos"));
-    alert("El monto que ustede debe pagar es $" + montoTotal + " en un total de " + cuotas + " cuotas y un costo de $"+montoCuota+" cada una.");
-    //console.log(montoCuota);
-    return montoCuota;
-}
+let deleteTask = (id)=>{
+    let taskToDelete = document.getElementById(id);
+    list.removeChild(taskToDelete);
+    updateStats();
+};
