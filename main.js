@@ -1,50 +1,49 @@
 let IdCounter = 0;
-const input = document.querySelector('input[type="text"]');
+let listaTareas = new Array();
 
-userInput.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    if(input.value.trim().length != 0){
-        addTask();
+
+
+
+while (true) {
+    let key = parseInt(prompt("Ingrese 1 para crear una tarea, 2 para ver las tareas o 3 para elimanr una tarea. Si quiere salir precione cargue el numero 4"));
+    switch (key) {
+        case 1:
+            nuevaTarea();
+            break;
+
+        case 2:
+            verTareas();
+            break;
+
+        case 3:
+            eliminarTarea();
+            break
+
+        case 4:
+            break;
+
+        default:
+            alert("Opcion Invalida!!!");
+            break;
     }
-});
 
-let addTask = ()=>{
-    IdCounter++;
-
-    //Recoger Texto
-    let newValue = input.value;
-
-    //Agregar tarea
-    const newTask = `
-        <div class="task-container" id="${IdCounter}">
-            <label>
-                <input type="checkbox"> 
-                ${newValue}
-            </label>
-            <img src="./images/delete.png" class="closeBtn">
-        </div>
-    `;
-    list.innerHTML += newTask;
-    input.value = '';
-    updateStats();
+    if (key == 4) {
+        break;
+    }
 }
 
-list.addEventListener('click', (event)=>{
-    if(event.srcElement.nodeName == 'INPUT'){
-        updateStats();
-    }else if(event.srcElement.nodeName == 'IMG'){
-        deleteTask(event.srcElement.parentNode.id);
-    }
-});
+function nuevaTarea() {
+    let tarea = prompt("Ingrese una nueva tarea.");
+    listaTareas.push(tarea);
+    console.table(listaTareas);
+}
 
-let updateStats = ()=>{
-    let element = list.querySelectorAll('div');
-    let checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
-    stats.innerHTML = `Tareas pendientes: ${element.length} Completadas: ${checkbox.length}`;
-};
+function verTareas() {
+    console.table(listaTareas);
+}
 
-let deleteTask = (id)=>{
-    let taskToDelete = document.getElementById(id);
-    list.removeChild(taskToDelete);
-    updateStats();
-};
+function eliminarTarea() {
+    let numeroTarea = parseInt(prompt("Ingrese el numero de la tarea que desea eliminar."));
+    listaTareas.splice(numeroTarea, 1);
+    console.table(listaTareas);
+}

@@ -1,48 +1,57 @@
-:root{
-    --orange: #D95550;
-    --lightOrange: #DD6662;
-    --veryLightOrange: #f89e8b;
-    --gray: #55557B;
-    --white: #ffffff;
+:root {
+    --orange: #e9cccb;
+    --lightOrange: #b6100b;
+    --veryLightOrange: #811902;
+    --gray: #0000ff;
+    --white: hwb(0 0% 100%);
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: var(--orange);
 }
-.logo{
+
+.logo {
     width: 10rem;
     position: absolute;
     top: .5rem;
     right: 5rem;
 }
-h1{
+
+h1 {
     margin-top: 13rem;
     font-size: 2rem;
     color: var(--white);
     text-align: center;
 }
-form{
+
+form {
     max-width: 400px;
     margin: 45px auto;
     text-align: center;
 }
-form input[type="text"]{
+
+form input[type="text"] {
     background-color: var(--orange);
     color: var(--white);
     border-style: none;
     font-size: 1.5em;
 }
-form input[type="text"]::placeholder{
+
+form input[type="text"]::placeholder {
     color: var(--veryLightOrange);
 }
-form input[type="text"]:focus{
+
+form input[type="text"]:focus {
     outline: none;
 }
-form input[type="submit"]{
+
+form input[type="submit"] {
     color: var(--orange);
     width: 40px;
     height: 40px;
@@ -50,18 +59,21 @@ form input[type="submit"]{
     border-style: none;
     font-size: 2em;
 }
-form input[type="submit"]:hover{
+
+form input[type="submit"]:hover {
     background-color: var(--veryLightOrange);
     cursor: pointer;
-    color: white;
+    color: rgb(155, 44, 44);
 }
-.list-container{
+
+.list-container {
     max-width: 600px;
     margin: 0 auto;
 }
-.task-container{
+
+.task-container {
     background-color: white;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 6px;
     border-radius: 4px;
@@ -70,16 +82,19 @@ form input[type="submit"]:hover{
     font-size: 1.1em;
     font-weight: 500;
 }
-.closeBtn{
+
+.closeBtn {
     width: 15px;
     height: 15px;
 }
-.closeBtn:hover{
+
+.closeBtn:hover {
     cursor: pointer;
 }
-#stats{
+
+#stats {
     margin: 25px 0 50px;
-    color: #ffe5d2;
+    color: #fd720f;
     text-align: center;
     font-size: 1.3em;
 }
